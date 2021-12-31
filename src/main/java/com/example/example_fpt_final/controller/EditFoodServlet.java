@@ -24,7 +24,7 @@ public class EditFoodServlet extends HttpServlet {
         try {
             int id = Integer.parseInt(req.getParameter("id"));
             Food food = foodJpaRepository.findById(id);
-            if (food == null) {
+            if (food == null || food.getStatus() == 3) {
                 resp.getWriter().println("Food is not found!");
             } else {
                 categories = categoryJpaRepository.findAll();
@@ -41,7 +41,7 @@ public class EditFoodServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Food food = foodJpaRepository.findById(id);
-        if(food == null){
+        if(food == null || food.getStatus() == 3){
             resp.getWriter().println("Food is not found!");
         }else {
             String code = req.getParameter("code");

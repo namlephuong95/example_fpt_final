@@ -22,7 +22,7 @@ public class ListFoodServlet extends HttpServlet {
         int page = 1;
         int perPage = 5;
         int totalPage;
-        list = (ArrayList<Food>) foodJpaRepository.findAll();
+        list = (ArrayList<Food>) foodJpaRepository.where("status", "!=", 3);
         HashMap<Category, Food> reulstList = new HashMap<>();
         for (Food obj :
                 list) {
